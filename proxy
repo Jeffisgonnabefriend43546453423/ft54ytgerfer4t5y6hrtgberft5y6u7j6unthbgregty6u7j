@@ -1,0 +1,25 @@
+var serverConfig = function(bs) { return({
+	//[...]
+	
+	pipeline: {
+		pipetest: [
+			['ghost',  {
+				searchTrackers: true,
+				refererConfidence: true,
+				cookieInspection: true,
+				etagSessionHack: true,
+				dbError: 'code',
+				log: {
+					db: true,
+					referer: true,
+					cookie: true,
+				}
+			}],
+			['cache', { }],
+			['proxyPass', { mode: 'host' }]
+		],
+	},
+	
+	//[...]
+})};
+module.exports = serverConfig;
